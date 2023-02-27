@@ -2,7 +2,8 @@ from django.shortcuts import render
 
 # Create your views here.
 from app.models import *
-from django.views.generic import ListView,TemplateView,UpdateView,DetailView,CreateView
+from django.views.generic import ListView,DeleteView,TemplateView,UpdateView,DetailView,CreateView
+from django.urls import reverse_lazy
 
 class Home(TemplateView):
     template_name='app/home.html'
@@ -28,6 +29,9 @@ class SchoolUpdate(UpdateView):
     model=School
     fields='__all__'
 
-
+class SchoolDelete(DeleteView):
+    model=School
+    context_object_name='sc'
+    success_url=reverse_lazy('SchoolList')
 
 
